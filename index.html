@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Tareas</title>
+  <style>
+    /* Fondo con la imagen proporcionada */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('ITLA.jpg'); /* Asegúrate de que este archivo esté en el mismo directorio */
+      background-size: cover; /* La imagen cubre toda la pantalla sin duplicarse */
+      background-repeat: no-repeat; /* Evita la repetición */
+      background-attachment: fixed; /* Fija la imagen para un mejor efecto */
+      background-position: center; /* Centra la imagen */
+      color: #333;
+    }
+
+    .container {
+      display: flex; /* Organiza el formulario y las tareas en una fila */
+      align-items: flex-start; /* Alinea los elementos al inicio vertical */
+      gap: 10px; /* Reduce el espacio entre el formulario y las tareas */
+      max-width: 900px; /* Mantiene el tamaño correcto del cuadro principal */
+      margin: 50px auto;
+      padding: 15px; /* Reduce el padding interno del cuadro principal */
+      background: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    .form-section {
+      flex: 1; /* Asigna un tamaño proporcional menor al formulario */
+      max-width: 300px; /* Limita el ancho máximo del formulario */
+    }
+
+    .task-list {
+      flex: 1.5; /* Reduce el tamaño relativo de la lista de tareas */
+      max-width: 450px; /* Establece un ancho máximo más pequeño */
+      overflow-y: auto; /* Habilita scroll si hay muchas tareas */
+      padding-left: 85px; /* Mueve la lista de tareas ligeramente hacia la derecha */
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    label {
+      font-weight: bold;
+      color: #555;
+      display: flex; /* Asegura que la casilla y el texto estén en línea */
+      align-items: center; /* Alinea verticalmente la casilla con el texto */
+      gap: 8px; /* Espacio entre la casilla y el texto */
+    }
+
+    input[type="radio"] {
+      vertical-align: middle; /* Asegura la alineación vertical con el texto */
+      width: 18px; /* Ajusta el tamaño horizontal */
+      height: 18px; /* Ajusta el tamaño vertical */
+      cursor: pointer; /* Cambia el cursor para mejor interacción */
+    }
+
+    input, textarea, select {
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: none; /* Evita que el campo de descripción sea ajustable */
+    }
+
+    button {
+      padding: 10px;
+      font-size: 16px;
+      color: white;
+      background-color: #e74c3c;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #c0392b;
+    }
+
+    .task-item {
+      padding: 10px; /* Reduce el espacio interno de cada tarea */
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-bottom: 10px;
+    }
+
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Sección del formulario -->
+    <div class="form-section">
+      <h1>Gestión de Tareas</h1>
+      <form id="taskForm">
+        <label for="title">Título:</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="description">Descripción:</label>
+        <textarea id="description" name="description"></textarea>
+
+        <label for="due_date">Fecha de Vencimiento:</label>
+        <input type="date" id="due_date" name="due_date">
+
+        <label for="priority">Prioridad:</label>
+        <select id="priority" name="priority">
+          <option value="Baja">Baja</option>
+          <option value="Media">Media</option>
+          <option value="Alta">Alta</option>
+        </select>
+
+        <!-- Aquí están las casillas de estado -->
+        <label>Estado:</label>
+        <div>
+          <label>
+            <input type="radio" name="status" value="En proceso"> En proceso
+          </label>
+          <label>
+            <input type="radio" name="status" value="Completado"> Completado
+          </label>
+          <label>
+            <input type="radio" name="status" value="Atrasada"> Atrasada
+          </label>
+        </div>
+        <!-- Fin de las casillas -->
+
+        <button type="submit">Guardar</button>
+      </form>
+    </div>
+
+    <!-- Sección de tareas -->
+    <div class="task-list" id="taskList">
+      <!-- Las tareas se cargarán dinámicamente aquí -->
+    </div>
+  </div>
+</body>
+<script src="script.js"></script>
+</html>
+
+<!-- Mensaje de éxito -->
+<div id="successMessage" class="success-message"></div>
+
+
+
